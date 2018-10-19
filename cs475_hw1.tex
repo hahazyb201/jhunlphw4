@@ -73,6 +73,7 @@
 	\paragraph{1}.\\
 \\
 (a)\\
+I tried the berkeley parser and got results as below:\\
 \\
 I participated a party held by Jimmy.\\
 \includegraphics[width=0.8\linewidth]{parse1.png}\\
@@ -109,31 +110,21 @@ result:\\
 \includegraphics[width=0.8\linewidth]{parse5.png}\\
 \\
 As we can see, the parse still cannot parse the verb phrase ''hand in''. What's worse, ''hand'' is interpreted as a ''NN''(Noun).\\
-\paragraph{3}. \\
+\paragraph{2}. \\
 \\
 (a)\\
-Results for gen/*\\
-176 files were more probably gen (97.78\%)\\
-4 files were more probably spam (2.22\%)\\
-\\
-Results for spam/*\\
-61 files were more probably gen (67.78\%)\\
-29 files were more probably spam (32.22\%)\\
-\\
-Thus, the error rate is $\frac{4+61}{180+90}=24.07\%$\\
-\\
+Link Grammar Parser:\\
+Besides the parsed tree, this parser also shows linkages between constituents.\\
+For example, when I parsed ''I participated a party held by Jimmy.''. It connected the ''a'' with ''party'' and the link between them is named as ''Ds'', which is used to connect determiners to nouns. And the link ''Wd'' is used to attach main clause to the beginning of the sentence. For example, ''I participated a party'' is the main clause in my sentence.\\
+I think those linkages help us to understand relationships between constituents.\\
+ 
 (b)\\
-When I set the prior probability as $10^{-323}$, which is the smallest value a log function can take, there are still 1 file in gen/* and 2 files in spam/* classified as gen.\\
-\\
+I parsed Chinese sentence using Stanford parser. I found that before parsing Chinese sentence, it first segment the sentence into separate words. After the word-segmentation, it parsed Chinese sentence in a similar way as English sentence. It could get accurate results for some sentences. However, sometimes the error in word-segmentation would cause error in parsing.\\
 
 (c)\\
-As for gen, when $\lambda=0.00852$, the cross-entropy per token is the minimum. The minimum is 8.74253\\
-As for spam, when $\lambda=0.014$, the cross-entropy per token is the minimum. The minimum is 7.10009.
+I tried a neural network parser https://nlp.stanford.edu/software/nndep.shtml.  \\
+I got more satisfying parsing results on sentences in question 1. What's more, I think I was faster than CFG in question 1. \\
 
-(d)\\
-Cross-entropy per token$=\frac{Total~cross-entropy~on~/dev/gen/*+Total~cross-entropy~on~/dev/spam/*}{count(tokens~in~/dev/gen/*)+count(tokens~in~/dev/spam/*)}$\\
-When $\lambda^*=0.01$, the cross-entropy per token on the whole dev set reach its minimum, which is 8.0104\\
-\\
 
 (e)\\
 To solve this problem, I wrote a program named ''sortOnLength.py''. This program will will sort our classification result on dev set on lengths of files.
